@@ -38,8 +38,17 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        //return new double[0]; // replace this return statement with your own
 
-        return new double[0]; // replace this return statement with your own
+        // Create an array of doubles with the specified length
+        // Loop through each index of the array
+        // For each index, calculate the multiple of the given number and assign it to the corresponding index in the array
+        double[] result = new double[length]; 
+        for (int i = 0; i < length; i++) 
+        {                               
+        result[i] = number * (i + 1); // Calculate multiples of 'number'
+        }
+    return result;
     }
     
     /// <summary>
@@ -57,5 +66,16 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // Calculate the effective rotation amount (taking modulo with the length of the list to handle cases where the amount is greater than the list length)
+        // Use List's 'GetRange' method to extract the sublist that needs to be moved to the beginning
+        // Use List's 'RemoveRange' method to remove the extracted sublist
+        // Insert the extracted sublist at the beginning of the list
+        int effectiveAmount = amount % data.Count;
+        if (effectiveAmount == 0)
+        return; // No rotation needed
+
+        List<int> sublist = data.GetRange(data.Count - effectiveAmount, effectiveAmount);
+        data.RemoveRange(data.Count - effectiveAmount, effectiveAmount);
+        data.InsertRange(0, sublist);    
     }
 }
