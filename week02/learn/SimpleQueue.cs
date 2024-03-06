@@ -10,7 +10,7 @@
         queue.Enqueue(100);
         var value = queue.Dequeue();
         Console.WriteLine(value);
-        // Defect(s) Found:
+        // Defect(s) Found: index 1 rather than 0
 
         Console.WriteLine("------------");
 
@@ -28,7 +28,7 @@
         Console.WriteLine(value);
         value = queue.Dequeue();
         Console.WriteLine(value);
-        // Defect(s) Found: 
+        // Defect(s) Found: Appends the value to the end of the list, simulating queue behavior correctly.
 
         Console.WriteLine("------------");
 
@@ -53,8 +53,8 @@
     /// Enqueue the value provided into the queue
     /// </summary>
     /// <param name="value">Integer value to add to the queue</param>
-    private void Enqueue(int value) {
-        _queue.Insert(0, value);
+    private void Enqueue(int value) { 
+        _queue.Add(value); // This appends the value to the end of the list, simulating queue behavior correctly.
     }
 
     /// <summary>
@@ -62,12 +62,12 @@
     /// </summary>
     /// <exception cref="IndexOutOfRangeException">If queue is empty</exception>
     /// <returns>First integer in the queue</returns>
-    private int Dequeue() {
+    private int Dequeue() { 
         if (_queue.Count <= 0)
             throw new IndexOutOfRangeException();
 
-        var value = _queue[1];
-        _queue.RemoveAt(1);
+        var value = _queue[0]; // Corrected from _queue[1]
+        _queue.RemoveAt(0); // Corrected from _queue.RemoveAt(1)
         return value;
     }
 }
