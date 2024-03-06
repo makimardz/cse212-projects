@@ -11,24 +11,62 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
+        // Scenario: Specify the maximum size of the queue
         // Expected Result: 
         Console.WriteLine("Test 1");
+        CustomerService cs1 = new CustomerService(5);
+        Console.WriteLine(cs1);
 
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
+        // Scenario: Invalid mx size (less than or equal to 0)
         // Expected Result: 
         Console.WriteLine("Test 2");
+        CustomerService cs2 = new CustomerService(0);
+        Console.WriteLine(cs2);
 
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
 
         // Add more Test Cases As Needed Below
+
+        // Test 3: Add new customer
+        Console.WriteLine("\nTest 3: Add New Customer");
+        cs1.AddNewCustomer();
+        Console.WriteLine(cs1);
+        // Expected Output: [size=1 max_size=5 => (customer details)]
+
+        Console.WriteLine("=================");
+
+        // Test 4: Queue full error
+        Console.WriteLine("Test 4: Queue Full Error");
+        cs1.AddNewCustomer();
+        cs1.AddNewCustomer();
+        cs1.AddNewCustomer();
+        cs1.AddNewCustomer();
+        cs1.AddNewCustomer();
+        // Above additions fill up the queue of size 5
+        cs1.AddNewCustomer();
+        // Expected Output: Maximum Number of Customers in Queue.
+
+        Console.WriteLine("=================");
+
+        // Test 5: Serve Customer
+        Console.WriteLine("Test 5: Serve Customer");
+        cs1.ServeCustomer();
+        Console.WriteLine(cs1);
+        // Expected Output: [size=0 max_size=5 =>]
+
+        Console.WriteLine("=================");
+
+        // Test 6: Empty Queue Error
+        Console.WriteLine("Test 6: Empty Queue Error");
+        cs1.ServeCustomer();
+        // Expected Output: Queue is Empty. No Customers to Serve.
     }
 
     private readonly List<Customer> _queue = new();
