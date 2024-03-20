@@ -30,6 +30,15 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
+        var newPosition = (_currX, _currY - 1);
+            if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][1]) // Check if there's a path to the left
+        {
+            _currY--; // Move left
+        }
+            else
+        {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -38,6 +47,15 @@ public class Maze {
     /// </summary>
     public void MoveRight() {
         // FILL IN CODE
+        var newPosition = (_currX, _currY + 1);
+        if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][3]) // Check if there's a path to the right
+        {
+            _currY++; // Move right
+        }
+            else
+        {
+        Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -46,6 +64,15 @@ public class Maze {
     /// </summary>
     public void MoveUp() {
         // FILL IN CODE
+        var newPosition = (_currX - 1, _currY);
+    if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][0]) // Check if there's a path upwards
+    {
+        _currX--; // Move up
+    }
+    else
+    {
+        Console.WriteLine("Can't go that way!");
+    }
     }
 
     /// <summary>
@@ -54,6 +81,15 @@ public class Maze {
     /// </summary>
     public void MoveDown() {
         // FILL IN CODE
+        var newPosition = (_currX + 1, _currY);
+    if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][2]) // Check if there's a path downwards
+    {
+        _currX++; // Move down
+    }
+    else
+    {
+        Console.WriteLine("Can't go that way!");
+    }
     }
 
     public void ShowStatus() {
