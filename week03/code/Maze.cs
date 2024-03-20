@@ -14,82 +14,128 @@
 /// If there is a wall, then display "Can't go that way!".  If there is no wall,
 /// then the 'currX' and 'currY' values should be changed.
 /// </summary>
+// public class Maze {
+//     private readonly Dictionary<ValueTuple<int, int>, bool[]> _mazeMap;
+//     private int _currX = 1;
+//     private int _currY = 1;
+
+//     public Maze(Dictionary<ValueTuple<int, int>, bool[]> mazeMap) {
+//         _mazeMap = mazeMap;
+//     }
+
+//     // Todo Maze Problem - ADD YOUR CODE HERE
+//     /// <summary>
+//     /// Check to see if you can move left.  If you can, then move.  If you
+//     /// can't move, then display "Can't go that way!"
+//     /// </summary>
+//     public void MoveLeft() {
+//         // FILL IN CODE
+//         var newPosition = (_currX, _currY - 1);
+//             if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][1]) // Check if there's a path to the left
+//         {
+//             _currY--; // Move left
+//         }
+//             else
+//         {
+//             Console.WriteLine("Can't go that way!");
+//         }
+//     }
+
+//     /// <summary>
+//     /// Check to see if you can move right.  If you can, then move.  If you
+//     /// can't move, then display "Can't go that way!"
+//     /// </summary>
+//     public void MoveRight() {
+//         // FILL IN CODE
+//         var newPosition = (_currX, _currY + 1);
+//         if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][3]) // Check if there's a path to the right
+//         {
+//             _currY++; // Move right
+//         }
+//             else
+//         {
+//         Console.WriteLine("Can't go that way!");
+//         }
+//     }
+
+//     /// <summary>
+//     /// Check to see if you can move up.  If you can, then move.  If you
+//     /// can't move, then display "Can't go that way!"
+//     /// </summary>
+//     public void MoveUp() {
+//         // FILL IN CODE
+//         var newPosition = (_currX - 1, _currY);
+//     if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][0]) // Check if there's a path upwards
+//     {
+//         _currX--; // Move up
+//     }
+//     else
+//     {
+//         Console.WriteLine("Can't go that way!");
+//     }
+//     }
+
+//     /// <summary>
+//     /// Check to see if you can move down.  If you can, then move.  If you
+//     /// can't move, then display "Can't go that way!"
+//     /// </summary>
+//     public void MoveDown() {
+//         // FILL IN CODE
+//         var newPosition = (_currX + 1, _currY);
+//     if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][2]) // Check if there's a path downwards
+//     {
+//         _currX++; // Move down
+//     }
+//     else
+//     {
+//         Console.WriteLine("Can't go that way!");
+//     }
+//     }
+
+//     public void ShowStatus() {
+//         Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+//     }
+// }
+
 public class Maze {
-    private readonly Dictionary<ValueTuple<int, int>, bool[]> _mazeMap;
+    private readonly Dictionary<(int, int), bool[]> _mazeMap;
     private int _currX = 1;
     private int _currY = 1;
 
-    public Maze(Dictionary<ValueTuple<int, int>, bool[]> mazeMap) {
+    public Maze(Dictionary<(int, int), bool[]> mazeMap) {
         _mazeMap = mazeMap;
     }
 
-    // Todo Maze Problem - ADD YOUR CODE HERE
-    /// <summary>
-    /// Check to see if you can move left.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
     public void MoveLeft() {
-        // FILL IN CODE
-        var newPosition = (_currX, _currY - 1);
-            if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][1]) // Check if there's a path to the left
-        {
-            _currY--; // Move left
-        }
-            else
-        {
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][0] && _mazeMap.ContainsKey((_currX - 1, _currY)) && _mazeMap[(_currX - 1, _currY)][1]) {
+            _currX--;
+        } else {
             Console.WriteLine("Can't go that way!");
         }
     }
 
-    /// <summary>
-    /// Check to see if you can move right.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
     public void MoveRight() {
-        // FILL IN CODE
-        var newPosition = (_currX, _currY + 1);
-        if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][3]) // Check if there's a path to the right
-        {
-            _currY++; // Move right
-        }
-            else
-        {
-        Console.WriteLine("Can't go that way!");
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][1] && _mazeMap.ContainsKey((_currX + 1, _currY)) && _mazeMap[(_currX + 1, _currY)][0]) {
+            _currX++;
+        } else {
+            Console.WriteLine("Can't go that way!");
         }
     }
 
-    /// <summary>
-    /// Check to see if you can move up.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
     public void MoveUp() {
-        // FILL IN CODE
-        var newPosition = (_currX - 1, _currY);
-    if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][0]) // Check if there's a path upwards
-    {
-        _currX--; // Move up
-    }
-    else
-    {
-        Console.WriteLine("Can't go that way!");
-    }
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][2] && _mazeMap.ContainsKey((_currX, _currY - 1)) && _mazeMap[(_currX, _currY - 1)][3]) {
+            _currY--;
+        } else {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
-    /// <summary>
-    /// Check to see if you can move down.  If you can, then move.  If you
-    /// can't move, then display "Can't go that way!"
-    /// </summary>
     public void MoveDown() {
-        // FILL IN CODE
-        var newPosition = (_currX + 1, _currY);
-    if (_mazeMap.ContainsKey(newPosition) && _mazeMap[newPosition][2]) // Check if there's a path downwards
-    {
-        _currX++; // Move down
-    }
-    else
-    {
-        Console.WriteLine("Can't go that way!");
-    }
+        if (_mazeMap.ContainsKey((_currX, _currY)) && _mazeMap[(_currX, _currY)][3] && _mazeMap.ContainsKey((_currX, _currY + 1)) && _mazeMap[(_currX, _currY + 1)][2]) {
+            _currY++;
+        } else {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     public void ShowStatus() {
